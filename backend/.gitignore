@@ -1,0 +1,8 @@
+# Backend-specific gitignore (in addition to root .gitignore)
+__pycache__/
+*.pyc
+.env
+ap_health.db
+ai/training_data.jsonl
+ai/*.gguf
+ai/outputs/

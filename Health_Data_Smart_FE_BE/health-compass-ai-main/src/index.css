@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 200 20% 98%;
+    --foreground: 210 30% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 30% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 30% 12%;
+
+    --primary: 174 62% 38%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 200 25% 94%;
+    --secondary-foreground: 210 30% 18%;
+
+    --muted: 200 18% 95%;
+    --muted-foreground: 210 12% 52%;
+
+    --accent: 200 60% 94%;
+    --accent-foreground: 200 60% 28%;
+
+    --destructive: 0 72% 56%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 200 20% 90%;
+    --input: 200 20% 90%;
+    --ring: 174 62% 38%;
+
+    --radius: 0.75rem;
+
+    /* Healthcare-specific tokens */
+    --risk-critical: 0 78% 56%;
+    --risk-critical-foreground: 0 0% 100%;
+    --risk-high: 25 95% 53%;
+    --risk-high-foreground: 0 0% 100%;
+    --risk-moderate: 45 93% 47%;
+    --risk-moderate-foreground: 45 93% 15%;
+    --risk-low: 142 71% 40%;
+    --risk-low-foreground: 0 0% 100%;
+
+    --health-excellent: 158 64% 42%;
+    --health-good: 174 62% 38%;
+    --health-fair: 45 93% 47%;
+    --health-poor: 0 72% 56%;
+
+    --medical-blue: 210 90% 56%;
+    --medical-blue-light: 210 90% 95%;
+    --medical-teal: 174 62% 38%;
+    --medical-teal-light: 174 62% 94%;
+    --medical-purple: 262 60% 55%;
+    --medical-purple-light: 262 60% 95%;
+    --medical-amber: 38 92% 50%;
+    --medical-amber-light: 38 92% 94%;
+
+    --sidebar-background: 210 30% 8%;
+    --sidebar-foreground: 200 20% 85%;
+    --sidebar-primary: 174 62% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 25% 15%;
+    --sidebar-accent-foreground: 200 20% 90%;
+    --sidebar-border: 210 20% 18%;
+    --sidebar-ring: 174 62% 48%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(174 62% 38%), hsl(200 80% 50%));
+    --gradient-health: linear-gradient(135deg, hsl(158 64% 42%), hsl(174 62% 38%));
+    --gradient-risk: linear-gradient(135deg, hsl(0 72% 56%), hsl(25 95% 53%));
+    --gradient-sidebar: linear-gradient(180deg, hsl(210 30% 8%), hsl(210 35% 12%));
+
+    --shadow-card: 0 1px 3px 0 hsl(210 30% 12% / 0.04), 0 1px 2px -1px hsl(210 30% 12% / 0.04);
+    --shadow-card-hover: 0 10px 25px -5px hsl(210 30% 12% / 0.08), 0 8px 10px -6px hsl(210 30% 12% / 0.04);
+    --shadow-elevated: 0 20px 40px -12px hsl(174 62% 38% / 0.15);
+
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  }
+
+  .dark {
+    --background: 210 30% 6%;
+    --foreground: 200 20% 92%;
+    --card: 210 28% 10%;
+    --card-foreground: 200 20% 92%;
+    --popover: 210 28% 10%;
+    --popover-foreground: 200 20% 92%;
+    --primary: 174 62% 48%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 25% 15%;
+    --secondary-foreground: 200 20% 85%;
+    --muted: 210 20% 14%;
+    --muted-foreground: 210 12% 55%;
+    --accent: 200 40% 18%;
+    --accent-foreground: 200 60% 70%;
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 20% 18%;
+    --input: 210 20% 18%;
+    --ring: 174 62% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  .gradient-health {
+    background: var(--gradient-health);
+  }
+  .gradient-risk {
+    background: var(--gradient-risk);
+  }
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  .shadow-card-hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+  .health-score-ring {
+    background: conic-gradient(
+      hsl(var(--health-excellent)) var(--score-percent, 0%),
+      hsl(var(--border)) var(--score-percent, 0%)
+    );
+  }
+}
