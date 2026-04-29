@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => ({
     mode === "development" && componentTagger(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.ico", "healtour-logo.png"],
+      includeAssets: ["favicon.ico", "healtour-logo.jpeg"],
       manifest: {
         name: "Healtour · AP Health IQ",
         short_name: "Healtour",
@@ -29,8 +29,8 @@ export default defineConfig(({ mode }) => ({
         scope: "/",
         start_url: "/login",
         icons: [
-          { src: "/healtour-logo.png", sizes: "192x192", type: "image/png", purpose: "any maskable" },
-          { src: "/healtour-logo.png", sizes: "512x512", type: "image/png", purpose: "any maskable" },
+          { src: "/healtour-logo.jpeg", sizes: "192x192", type: "image/jpeg", purpose: "any maskable" },
+          { src: "/healtour-logo.jpeg", sizes: "512x512", type: "image/jpeg", purpose: "any maskable" },
         ],
       },
       workbox: {
