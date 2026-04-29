@@ -78,7 +78,7 @@
 - `training_data.jsonl` — 15,206 training pairs (6.1 MB, in repo)
 - `Modelfile` — Ollama config to wrap the GGUF with the AP system prompt
 - `README_FINETUNE.md` — full Colab notebook walkthrough
-- `ap-health-unsloth.Q4_K_M.gguf` — **NOT in repo** (2 GB). Hosted as a GitHub Release asset. See repo Releases page.
+- `llama-3.2-3b-instruct.Q4_K_M.gguf` — **NOT in repo** (~2 GB). Hosted as a GitHub Release asset under tag `v1.0-fine-tuned-model`. Download from the [Releases page](https://github.com/PrasanthiPayyala/Health-Data-Smart/releases).
 
 ## Reproducibility
 
