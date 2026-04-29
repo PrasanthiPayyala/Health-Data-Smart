@@ -38,10 +38,19 @@ class OutbreakAlertRequest(BaseModel):
 @router.get("/status")
 async def ai_status():
     available = await ollama_service.is_available()
+    provider = ollama_service.AI_PROVIDER
+    if provider == "groq":
+        model = ollama_service.GROQ_MODEL
+        base_url = ollama_service.GROQ_BASE_URL
+    else:
+        model = ollama_service.OLLAMA_MODEL
+        base_url = ollama_service.OLLAMA_BASE_URL
     return {
         "ollama_available": available,
-        "model": ollama_service.OLLAMA_MODEL,
-        "base_url": ollama_service.OLLAMA_BASE_URL,
+        "available": available,
+        "provider": provider,
+        "model": model,
+        "base_url": base_url,
     }
 
 
@@ -56,12 +65,18 @@ async def ai_chat(req: ChatRequest):
 
     try:
         reply = await ollama_service.chat(req.message, req.context, req.history)
+        active_model = (
+            ollama_service.GROQ_MODEL
+            if ollama_service.AI_PROVIDER == "groq"
+            else ollama_service.OLLAMA_MODEL
+        )
         return {
             "reply": reply,
-            "model": ollama_service.OLLAMA_MODEL,
+            "model": active_model,
+            "provider": ollama_service.AI_PROVIDER,
         }
     except Exception as e:
-        raise HTTPException(status_code=503, detail=f"Ollama error: {str(e)}")
+        raise HTTPException(status_code=503, detail=f"AI provider error: {str(e)}")
 
 
 @router.post("/classify")
