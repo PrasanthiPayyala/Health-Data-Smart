@@ -73,6 +73,12 @@ def build_patient_context(context: dict) -> str:
     return "\n".join(parts)
 
 
+def _ollama_headers() -> dict:
+    """Headers for Ollama HTTP calls. Includes localtunnel bypass header
+    in case the OLLAMA_BASE_URL points to a *.loca.lt tunnel."""
+    return {"bypass-tunnel-reminder": "1"}
+
+
 async def chat(message: str, context: dict | None = None, history: list | None = None) -> str:
     """Non-streaming chat — returns full response string."""
     messages = [{"role": "system", "content": AP_SYSTEM_PROMPT}]
@@ -94,6 +100,7 @@ async def chat(message: str, context: dict | None = None, history: list | None =
         resp = await client.post(
             f"{OLLAMA_BASE_URL}/api/chat",
             json={"model": OLLAMA_MODEL, "messages": messages, "stream": False},
+            headers=_ollama_headers(),
         )
         resp.raise_for_status()
         data = resp.json()
@@ -120,6 +127,7 @@ async def stream_chat(message: str, context: dict | None = None) -> AsyncGenerat
             "POST",
             f"{OLLAMA_BASE_URL}/api/chat",
             json={"model": OLLAMA_MODEL, "messages": messages, "stream": True},
+            headers=_ollama_headers(),
         ) as resp:
             resp.raise_for_status()
             async for line in resp.aiter_lines():
@@ -136,7 +144,7 @@ async def stream_chat(message: str, context: dict | None = None) -> AsyncGenerat
 async def is_available() -> bool:
     try:
         async with httpx.AsyncClient(timeout=5.0) as client:
-            r = await client.get(f"{OLLAMA_BASE_URL}/api/tags")
+            r = await client.get(f"{OLLAMA_BASE_URL}/api/tags", headers=_ollama_headers())
             return r.status_code == 200
     except Exception:
         return False
