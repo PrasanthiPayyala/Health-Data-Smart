@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* AP Health IQ — Light professional government palette */
+    --background: 210 40% 98%;
+    --foreground: 215 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    --primary: 217 91% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 215 25% 25%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 210 80% 92%;
+    --accent-foreground: 217 91% 35%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 60% 87%;
+    --input: 210 60% 87%;
+    --ring: 217 91% 50%;
+
+    --radius: 0.5rem;
+
+    /* Healthcare tokens — light variants */
+    --risk-critical: 0 70% 50%;
+    --risk-critical-foreground: 0 0% 100%;
+    --risk-high: 25 90% 50%;
+    --risk-high-foreground: 0 0% 100%;
+    --risk-moderate: 38 90% 48%;
+    --risk-moderate-foreground: 38 90% 12%;
+    --risk-low: 158 60% 40%;
+    --risk-low-foreground: 0 0% 100%;
+
+    --health-excellent: 158 60% 40%;
+    --health-good: 174 60% 38%;
+    --health-fair: 38 90% 48%;
+    --health-poor: 0 70% 50%;
+
+    --medical-blue: 217 91% 50%;
+    --medical-blue-light: 210 80% 92%;
+    --medical-teal: 174 60% 38%;
+    --medical-teal-light: 174 50% 92%;
+    --medical-purple: 262 60% 50%;
+    --medical-purple-light: 262 60% 95%;
+    --medical-amber: 38 90% 48%;
+    --medical-amber-light: 38 80% 94%;
+
+    --sidebar-background: 210 40% 98%;
+    --sidebar-foreground: 215 25% 25%;
+    --sidebar-primary: 217 91% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 60% 94%;
+    --sidebar-accent-foreground: 217 91% 35%;
+    --sidebar-border: 210 60% 87%;
+    --sidebar-ring: 217 91% 50%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 35%), hsl(217 91% 50%));
+    --gradient-health: linear-gradient(135deg, hsl(158 60% 40%), hsl(174 60% 38%));
+    --gradient-risk: linear-gradient(135deg, hsl(0 70% 50%), hsl(25 90% 50%));
+    --gradient-sidebar: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 40% 98%));
+
+    --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+    --shadow-card-hover: 0 6px 18px rgba(15, 23, 42, 0.10);
+    --shadow-elevated: 0 12px 28px rgba(15, 23, 42, 0.12);
+
+    color-scheme: light;
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  }
+
+  /* Keep .dark using the same light values so any toggle is harmless */
+  .dark {
+    --background: 210 40% 98%;
+    --foreground: 215 25% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+    --primary: 217 91% 35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 215 25% 25%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 210 80% 92%;
+    --accent-foreground: 217 91% 35%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 60% 87%;
+    --input: 210 60% 87%;
+    --ring: 217 91% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html, body {
+    background: #F4F8FC;
+    @apply text-foreground antialiased;
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .gradient-primary { background: var(--gradient-primary); }
+  .gradient-health  { background: var(--gradient-health); }
+  .gradient-risk    { background: var(--gradient-risk); }
+  .shadow-card        { box-shadow: var(--shadow-card); }
+  .shadow-card-hover  { box-shadow: var(--shadow-card-hover); }
+  .shadow-elevated    { box-shadow: var(--shadow-elevated); }
+  .health-score-ring {
+    background: conic-gradient(
+      hsl(var(--health-excellent)) var(--score-percent, 0%),
+      hsl(var(--border)) var(--score-percent, 0%)
+    );
+  }
+}
